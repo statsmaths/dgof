@@ -22,8 +22,8 @@
 
 #include <R.h>
 
-void pkstwo(Sint *n, double *x, double *tol) ;
-void psmirnov2x(double *x, Sint *m, Sint *n);
-void pkolmogorov2x(double *x, Sint *n);
+void pkstwo(int *n, double *x, double *tol) ;
+void psmirnov2x(double *x, int *m, int *n);
+void pkolmogorov2x(double *x, int *n);
 
 #endif

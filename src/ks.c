@@ -15,7 +15,7 @@ static void m_power(double *A, int eA, double *V, int *eV, int m, int n);
 
 /* Two-sample two-sided asymptotic distribution */
 void
-pkstwo(Sint *n, double *x, double *tol)
+pkstwo(int *n, double *x, double *tol)
 {
 /* x[1:n] is input and output
  *
@@ -38,9 +38,9 @@ pkstwo(Sint *n, double *x, double *tol)
  *
  */
     double new, old, s, w, z;
-    Sint i, k, k_max;
+    int i, k, k_max;
 
-    k_max = (Sint) sqrt(2 - log(*tol));
+    k_max = (int) sqrt(2 - log(*tol));
 
     for(i = 0; i < *n; i++) {
 	if(x[i] < 1) {
@@ -71,10 +71,10 @@ pkstwo(Sint *n, double *x, double *tol)
 
 /* Two-sided two-sample */
 void
-psmirnov2x(double *x, Sint *m, Sint *n)
+psmirnov2x(double *x, int *m, int *n)
 {
     double md, nd, q, *u, w;
-    Sint i, j;
+    int i, j;
 
     if(*m > *n) {
 	i = *n; *n = *m; *m = i;
@@ -110,7 +110,7 @@ psmirnov2x(double *x, Sint *m, Sint *n)
 
 /* The two-sided one-sample 'exact' distribution */
 void
-pkolmogorov2x(double *x, Sint *n)
+pkolmogorov2x(double *x, int *n)
 {
     /* x is input and output. */
 

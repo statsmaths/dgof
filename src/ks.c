@@ -83,7 +83,7 @@ psmirnov2x(double *x, Sint *m, Sint *n)
     nd = (double) (*n);
     /*
        q has 0.5/mn added to ensure that rounding error doesn't
-       turn an equality into an inequality, eg abs(1/2-4/5)>3/10 
+       turn an equality into an inequality, eg abs(1/2-4/5)>3/10
 
     */
     q = (0.5 + floor(*x * md * nd - 1e-7)) / (md * nd);
@@ -99,7 +99,7 @@ psmirnov2x(double *x, Sint *m, Sint *n)
 	else
 	    u[0] = w * u[0];
 	for(j = 1; j <= *n; j++) {
-	    if(fabs(i / md - j / nd) > q) 
+	    if(fabs(i / md - j / nd) > q)
 		u[j] = 0;
 	    else
 		u[j] = w * u[j] + u[j - 1];
@@ -131,10 +131,10 @@ K(int n, double d)
    int k, m, i, j, g, eH, eQ;
    double h, s, *H, *Q;
 
-   /* 
+   /*
       The faster right-tail approximation is omitted here.
-      s = d*d*n; 
-      if(s > 7.24 || (s > 3.76 && n > 99)) 
+      s = d*d*n;
+      if(s > 7.24 || (s > 3.76 && n > 99))
           return 1-2*exp(-(2.000071+.331/sqrt(n)+1.409/n)*s);
    */
    k = (int) (n * d) + 1;

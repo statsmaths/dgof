@@ -17,7 +17,7 @@ cvm.test <- function(x,y, type=c("W2", "U2", "A2"),
     rho <- function(u) {
       VAL <- 0
       for(i in 1:length(lambda)) {
-        VAL <- VAL + log(1 + lambda[i]^2*u^2)     
+        VAL <- VAL + log(1 + lambda[i]^2*u^2)
       }
       VAL <- exp(VAL*0.25)
       return(VAL)
@@ -31,7 +31,7 @@ cvm.test <- function(x,y, type=c("W2", "U2", "A2"),
     if(pval > 0.001) return(pval)
     if(pval <= 0.001) {
       df <- sum(lambda != 0)
-      est1 <- dchisq(STAT/max(lambda),df)      
+      est1 <- dchisq(STAT/max(lambda),df)
       logf <- function(t) {
         ans <- -t*STAT
         ans <- ans - 0.5*sum( log(1-2*t*lambda) )
@@ -69,7 +69,7 @@ cvm.test <- function(x,y, type=c("W2", "U2", "A2"),
     diag(K)[-length(H)] <- 1/(H[-length(H)]*(1-H[-length(H)]))
     Sy <- A %*% S0 %*% t(A)
     M <- switch(type, W2 = E,
-                U2 = (diag(1, nrow(E)) - 
+                U2 = (diag(1, nrow(E)) -
                       E%*%One%*%t(One))%*%E%*%(diag(1, nrow(E)) -
                       One%*%t(One)%*%E),
                       A2 = E%*%K)
@@ -89,7 +89,7 @@ cvm.test <- function(x,y, type=c("W2", "U2", "A2"),
     u <- runif(B*length(x))
     u <- sapply(u, function(a) return(knots.y[sum(a>fknots.y)+1]))
     dim(u) <- c(B, length(x))
-        
+
     # Calculate B values of the test statistic
     s <- apply(u, 1, cvm.stat.disc, y, type)
     s <- s[1,]
@@ -125,4 +125,3 @@ cvm.test <- function(x,y, type=c("W2", "U2", "A2"),
   class(RVAL) <- "htest"
   return(RVAL)
 }
-

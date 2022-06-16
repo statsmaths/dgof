@@ -132,7 +132,7 @@ ks.test(x, y, \dots,
 
   In the one-sample case with \code{y} discrete, the methods presented in
   Conover (1972) and Gleser (1985) are used when \code{exact=TRUE} (or when
-  \code{exact=NULL}) and \code{length(x)<=30} as described above. 
+  \code{exact=NULL}) and \code{length(x)<=30} as described above.
   When \code{exact=FALSE} or \code{exact=NULL} with
   \code{length(x)>30}, the test is not exact and the resulting p-values
   are known to be conservative.  Usage of \code{exact=TRUE} with
@@ -181,7 +181,7 @@ in Conover's 1972 paper -- see references).
   \emph{Journal of American Statistical Association}, Vol. 67, No. 339, 591--596.
 
   Leon Jay Gleser (1985),
-  Exact Power of Goodness-of-Fit Tests of Kolmogorov Type for Discontinuous 
+  Exact Power of Goodness-of-Fit Tests of Kolmogorov Type for Discontinuous
   Distributions.
   \emph{Journal of American Statistical Association}, Vol. 80, No. 392,  954--958.
   %% END TBA, JWE
@@ -194,7 +194,7 @@ in Conover's 1972 paper -- see references).
   George Marsaglia, Wai Wan Tsang and Jingbo Wang (2003),
   Evaluating Kolmogorov's distribution.
   \emph{Journal of Statistical Software}, \bold{8}/18.
-  \url{http://www.jstatsoft.org/v08/i18/}.
+  \url{https://www.jstatsoft.org/v08/i18/}.
 
 }
 %% ########################

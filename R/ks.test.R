@@ -66,7 +66,7 @@ ks.test <- function(x, y, ...,
     ## ks.test.Rd.
 
     exact.pval <-  function(alternative, STATISTIC, x, n, y, knots.y, tol) {
-    
+
         ts.pval <- function(S, x, n, y, knots.y, tol) {
             # The exact two-sided p-value from Gleser (1985)
             # and Niederhausen (1981)
@@ -85,9 +85,9 @@ ks.test <- function(x, y, ...,
                 # Otherwise, evaluate F_0(a_i - eps)
                 f_a[i] <- ifelse(!(a[i] %in% knots.y),
                                  y(a[i]), y(a[i]-eps))
-            } 
+            }
             f_b <- y(b)
-  
+
             # NOW HAVE f_a and f_b which are Niederhausen u, v, and this
             # uses the Noe result.
 
@@ -99,7 +99,7 @@ ks.test <- function(x, y, ...,
                                  max(f_b[k+1] - f_a[i], 0)^(i-k) * p[k+1]
                 }
                 p[i+1] <- tmp
-            }	
+            }
             p <- max(0, 1 - p[n+1])          # Niederhausen result
             if (p>1) {
                 warning("numerical instability in p-value calculation.")
@@ -123,7 +123,7 @@ ks.test <- function(x, y, ...,
             for(k in 1:(m-1))
                 b[k+1] <- 1 - sum(choose(k,1:k-1)*c[1:k]^(k-1:k+1)*b[1:k])
             p <- sum(choose(n, 0:(m-1))*c^(n-0:(m-1))*b )
-            return(p)        
+            return(p)
         }
 
         # Conover
@@ -133,19 +133,19 @@ ks.test <- function(x, y, ...,
             CDFVAL <- c(0,H(sort(z)))
             for(j in 1:length(c)) {
                 if( !(min(abs(c[j] - CDFVAL)) < tol) )
-                   c[j] <- CDFVAL[which(order(c(c[j], CDFVAL)) == 1 ) - 1] 
+                   c[j] <- CDFVAL[which(order(c(c[j], CDFVAL)) == 1 ) - 1]
             }
             b <- rep(0, m)
             b[1] <- 1
             for(k in 1:(m-1))
                 b[k+1] <- 1 - sum(choose(k,1:k-1)*c[1:k]^(k-1:k+1)*b[1:k])
             p <- sum(choose(n, 0:(m-1))*c^(n-0:(m-1))*b )
-            return(p)       
+            return(p)
         }
 
         p <- switch(alternative,
-                    "two.sided" = ts.pval(STATISTIC, x, n, y, knots.y, tol), 
-                    "less" = less.pval(STATISTIC, n, y, knots.y, tol), 
+                    "two.sided" = ts.pval(STATISTIC, x, n, y, knots.y, tol),
+                    "less" = less.pval(STATISTIC, n, y, knots.y, tol),
                     "greater" = greater.pval(STATISTIC, n, y, knots.y, tol))
         return(p)
     }
@@ -156,7 +156,7 @@ ks.test <- function(x, y, ...,
         u <- runif(B*length(x))
         u <- sapply(u, function(a) return(knots.y[sum(a>fknots.y)+1]))
         dim(u) <- c(B, length(x))
-        
+
         # Calculate B values of the test statistic
         getks <- function(a, knots.y, fknots.y) {
             dev <- c(0, ecdf(a)(knots.y) - fknots.y)
@@ -211,7 +211,7 @@ ks.test <- function(x, y, ...,
                                  "less" = "the CDF of x lies below that of y",
                                  "greater" = "the CDF of x lies above that of y")
         if(exact && (alternative == "two.sided") && !TIES)
-            PVAL <- 1 - .C("psmirnov2x",
+            PVAL <- 1 - .C(C_psmirnov2x,
                            p = as.double(STATISTIC),
                            as.integer(n.x),
                            as.integer(n.y),
@@ -286,7 +286,7 @@ ks.test <- function(x, y, ...,
                             "less" = max(x))
         if(exact && !TIES) {
             PVAL <- if(alternative == "two.sided")
-                1 - .C("pkolmogorov2x",
+                1 - .C(C_pkolmogorov2x,
                            p = as.double(STATISTIC),
                            as.integer(n),
                            PACKAGE="dgof")$p
@@ -317,7 +317,7 @@ ks.test <- function(x, y, ...,
         p[is.na(x)] <- NA
         IND <- which(!is.na(x) & (x > 0))
         if(length(IND)) {
-            p[IND] <- .C("pkstwo",
+            p[IND] <- .C(C_pkstwo,
                          as.integer(length(x[IND])),
                          p = as.double(x[IND]),
                          as.double(tol),

@@ -9,12 +9,12 @@ citEntry(entry = "Article",
   volume       = "3",
   number       = "2",
   pages        = "34--39",
-  url          = "http://journal.r-project.org/archive/2011-2/RJournal_2011-2_Arnold+Emerson.pdf",
+  url          = "https://doi.org/10.32614/RJ-2011-016",
+  doi          = "10.32614/RJ-2011-016",
 
   textVersion  =
   paste("Taylor B. Arnold, John W. Emerson (2011),",
         "Nonparametric Goodness-of-Fit Tests for Discrete Null Distributions,",
         "The R Journal, Vol. 3/2, December 2011, ",
-        "URL: http://journal.r-project.org/archive/2011-2/RJournal_2011-2_Arnold+Emerson.pdf")
+        "URL: https://doi.org/10.32614/RJ-2011-016")
 )
-

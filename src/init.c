@@ -24,7 +24,7 @@ static const R_CMethodDef R_CDef[] = {
    {NULL, NULL, 0, NULL}
 };
 
-void R_init_leaderCluster(DllInfo *dll)
+void R_init_dgof(DllInfo *dll)
 {
   R_registerRoutines(dll, R_CDef, NULL, NULL, NULL);
   R_useDynamicSymbols(dll, FALSE);

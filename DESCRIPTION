@@ -14,3 +14,4 @@ Description: A revision to the stats::ks.test() function and the associated
 License: GPL (>= 2.0)
 LazyLoad: yes
 NeedsCompilation: yes
+RoxygenNote: 7.2.3
